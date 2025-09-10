@@ -16,8 +16,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 .login-box{
     height: 400px;
     width: 600px;
-  
-    
+}
 
+
+.accounts-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+.account-main{
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 2px gray;
 
 }
+.accounts-hero{
+    padding: 15px;
+}
+.accounts-bottom{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.accounts-top, .accounts-bottom{
+    background-color: whitesmoke;
+}
+

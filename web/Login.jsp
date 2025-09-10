@@ -30,7 +30,7 @@
                                     <input type="email" name="email" class="form-control" required>
                                     <input type="password" name="pass" class="form-control mt-3" required>
                                     <input type="submit" value="Enter" class="btn btn-primary form-control mt-3" required>
-                                    <p><a href="Register.jsp">Not Registered</a></p>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -43,7 +43,8 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <form>
+                                <form  method="post" action="Login">
+                                     <input type="hidden" name="utype" value="manager">
                                     <input type="email" name="email" class="form-control" required>
                                     <input type="password"  name="pass" class="form-control mt-3" required>
                                     <input type="submit" value="Enter" class="btn btn-primary form-control mt-3" required>
@@ -59,7 +60,8 @@
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <form>
+                                <form method="post" action="Login">
+                                    <input type="hidden" name="utype" value="cashier">
                                     <input type="email" name="email" class="form-control" required>
                                     <input type="password" name="pass" class="form-control mt-3" required>
                                     <input type="submit" value="Enter" class="btn btn-primary form-control mt-3" required>
