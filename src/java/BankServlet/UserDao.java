@@ -175,9 +175,16 @@ public class UserDao {
         ResultSet rs = null;
         try {
             Connection con = UserDao.getConection();
-            PreparedStatement ps = con.prepareStatement("select * from transactions"
-                    + " where account_no = (select account_no from users where email=?)");
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM transactions "
+                    + "WHERE account_no = (SELECT account_no FROM users WHERE email=?) "
+                    + "UNION ALL "
+                    + "SELECT  * FROM transfer "
+                    + "WHERE account_no = (SELECT account_no FROM users WHERE email=?)"
+            );
             ps.setString(1, email);
+            ps.setString(2, email);
+
             rs = ps.executeQuery();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -213,15 +220,15 @@ public class UserDao {
                 if (i > 0) {
                     int j = ps2.executeUpdate();
                     if (j > 0) {
-                         PreparedStatement ps4 = con.prepareStatement("create table if not exists transfer"
-                    + "(account_no bigint not null, "
-                    + "receiver bigint, "
-                    + "amount bigint not null,"
-                    + "transaction_type varchar(50) not null, "
-                    + "date date default(current_date),"
-                    + " foreign key(account_no) references accounts(account_no))");
-                    ps4.execute();
-            
+                        PreparedStatement ps4 = con.prepareStatement("create table if not exists transfer"
+                                + "(account_no bigint not null, "
+                                + "receiver bigint, "
+                                + "amount bigint not null,"
+                                + "transaction_type varchar(50) not null, "
+                                + "date date default(current_date),"
+                                + " foreign key(account_no) references accounts(account_no))");
+                        ps4.execute();
+
                         PreparedStatement ps3 = con.prepareStatement("insert into transfer (account_no, receiver, amount, transaction_type) values(?,?,?,?)");
                         ps3.setLong(1, user);
                         ps3.setLong(2, account_no);
